@@ -47,6 +47,9 @@ jobs:
     - name: Build API Gateway
       run: cd founderlink-api-gateway && mvn clean package -DskipTests
 
+    - name: Set up Docker
+      uses: docker/setup-buildx-action@v3
+
     # 🔥 Build Docker images
     - name: Build Docker Images
-      run: docker-compose build
+      run: docker compose build
