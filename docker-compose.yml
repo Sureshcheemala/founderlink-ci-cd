@@ -33,6 +33,7 @@ services:
 
   api-gateway:
     build: ./founderlink-api-gateway
+    image: founderlink-api-service
     env_file:
       - .env
     ports:
@@ -53,6 +54,7 @@ services:
 
   auth-service:
     build: ./founderlink-auth-service
+    image: founderlink-auth-service
     env_file:
       - .env
     depends_on:
@@ -78,6 +80,7 @@ services:
 
   user-service:
     build: ./founderlink-user-service
+    image: founderlink-user-service
     env_file:
       - .env
     depends_on:
@@ -102,6 +105,7 @@ services:
 
   startup-service:
     build: ./founderlink-startup-service
+    image: founderlink-startup-service
     env_file:
       - .env
     depends_on:
@@ -126,6 +130,7 @@ services:
 
   team-service:
     build: ./founderlink-team-service
+    image: founderlink-team-service
     env_file:
       - .env
     depends_on:
@@ -150,6 +155,7 @@ services:
 
   investment-service:
     build: ./founderlink-investment-service
+    image: founderlink-investment-service
     env_file:
       - .env
     depends_on:
@@ -174,6 +180,7 @@ services:
 
   notification-service:
     build: ./founderlink-notification-service
+    image: founderlink-notification-service
     env_file:
       - .env
     depends_on:
