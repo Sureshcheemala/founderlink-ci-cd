@@ -53,3 +53,13 @@ jobs:
     # 🔥 Build Docker images
     - name: Build Docker Images
       run: docker compose build
+
+    env:
+      API_GATEWAY_PORT: ${{ secrets.API_GATEWAY_PORT }}
+      CONFIG_PORT: ${{ secrets.CONFIG_PORT }}
+      EUREKA_PORT: ${{ secrets.EUREKA_PORT }}
+      MYSQL_PORT: ${{ secrets.MYSQL_PORT }}
+      DB_USERNAME: ${{ secrets.DB_USERNAME }}
+      DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+      JWT_SECRET: ${{ secrets.JWT_SECRET }}
+      JWT_EXPIRATION: ${{ secrets.JWT_EXPIRATION }}
