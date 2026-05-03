@@ -38,3 +38,19 @@ Thumbs.db
 # Docker
 # =====================
 *.tar
+
+# =====================
+# Eclipse
+# =====================
+.metadata/
+RemoteSystemsTempFiles/
+
+# =====================
+# SonarLint
+# =====================
+.sonarlint/
+
+# =====================
+# Docs (optional)
+*.docx
+# =====================
