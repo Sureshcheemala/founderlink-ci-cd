@@ -33,7 +33,7 @@ services:
 
   api-gateway:
     build: ./founderlink-api-gateway
-    image: founderlink-api-service
+    image: founderlink-api-gateway
     env_file:
       - .env
     ports:
