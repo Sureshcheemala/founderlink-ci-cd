@@ -1,0 +1,52 @@
+name: FounderLink CI/CD
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Java
+      uses: actions/setup-java@v4
+      with:
+        distribution: 'temurin'
+        java-version: '17'
+
+    # 🔥 Build each service manually
+    - name: Build Config Server
+      run: cd founderlink-config-server && mvn clean package -DskipTests
+
+    - name: Build Service Registry
+      run: cd founderlink-service-registry && mvn clean package -DskipTests
+
+    - name: Build Auth Service
+      run: cd founderlink-auth-service && mvn clean package -DskipTests
+
+    - name: Build User Service
+      run: cd founderlink-user-service && mvn clean package -DskipTests
+
+    - name: Build Team Service
+      run: cd founderlink-team-service && mvn clean package -DskipTests
+
+    - name: Build Startup Service
+      run: cd founderlink-startup-service && mvn clean package -DskipTests
+
+    - name: Build Investment Service
+      run: cd founderlink-investment-service && mvn clean package -DskipTests
+
+    - name: Build Notification Service
+      run: cd founderlink-notification-service && mvn clean package -DskipTests
+
+    - name: Build API Gateway
+      run: cd founderlink-api-gateway && mvn clean package -DskipTests
+
+    # 🔥 Build Docker images
+    - name: Build Docker Images
+      run: docker-compose build

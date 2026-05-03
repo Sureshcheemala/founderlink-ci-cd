@@ -1,0 +1,40 @@
+# =====================
+# Java / Maven
+# =====================
+target/
+*.jar
+*.war
+*.log
+
+# =====================
+# Spring Boot
+# =====================
+application.properties
+application.yml
+.env
+
+# =====================
+# Node (frontend)
+# =====================
+node_modules/
+dist/
+build/
+
+# =====================
+# IDE files
+# =====================
+.metadata/
+.vscode/
+.idea/
+*.iml
+
+# =====================
+# OS files
+# =====================
+.DS_Store
+Thumbs.db
+
+# =====================
+# Docker
+# =====================
+*.tar

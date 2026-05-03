@@ -1,0 +1,235 @@
+services:
+  sonarqube:
+    image: sonarqube:community
+    container_name: sonarqube
+    ports:
+      - "9000:9000"
+    environment:
+      - SONAR_ES_BOOTSTRAP_CHECKS_DISABLE=true
+    networks:
+      - micro-net
+
+  config-server:
+    build: ./founderlink-config-server
+    env_file:
+      - .env
+    ports:
+      - "${CONFIG_PORT}:8888"
+    networks:
+      - micro-net
+
+  discovery-server:
+    build: ./founderlink-service-registry
+    env_file:
+      - .env
+    ports:
+      - "${EUREKA_PORT}:8761"
+    depends_on:
+      - config-server
+    environment:
+      - SPRING_CONFIG_IMPORT=optional:configserver:${CONFIG_SERVER_URL}
+    networks:
+      - micro-net
+
+  api-gateway:
+    build: ./founderlink-api-gateway
+    env_file:
+      - .env
+    ports:
+      - "${API_GATEWAY_PORT}:${API_GATEWAY_PORT}"
+    depends_on:
+      discovery-server:
+          condition: service_started
+      config-server:
+          condition: service_started
+      mysql:
+          condition: service_healthy
+    environment:
+      - SERVER_PORT=${API_GATEWAY_PORT}
+      - SPRING_CONFIG_IMPORT=optional:configserver:${CONFIG_SERVER_URL}
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=${EUREKA_SERVER}
+    networks:
+      - micro-net
+
+  auth-service:
+    build: ./founderlink-auth-service
+    env_file:
+      - .env
+    depends_on:
+      discovery-server:
+          condition: service_started
+      config-server:
+          condition: service_started
+      mysql:
+          condition: service_healthy
+      rabbitmq:
+          condition: service_started
+    environment:
+      - SPRING_CONFIG_IMPORT=optional:configserver:${CONFIG_SERVER_URL}
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:${MYSQL_PORT}/auth_db?createDatabaseIfNotExist=true
+      - SPRING_DATASOURCE_USERNAME=${DB_USERNAME}
+      - SPRING_DATASOURCE_PASSWORD=${DB_PASSWORD}
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=${EUREKA_SERVER}
+      - JWT_SECRET=${JWT_SECRET}
+      - JWT_EXPIRATION=${JWT_EXPIRATION}
+      - JWT_REFRESH_EXPIRATION=${JWT_REFRESH_EXPIRATION}
+    networks:
+      - micro-net
+
+  user-service:
+    build: ./founderlink-user-service
+    env_file:
+      - .env
+    depends_on:
+      discovery-server:
+          condition: service_started
+      config-server:
+          condition: service_started
+      mysql:
+          condition: service_healthy
+      rabbitmq:
+          condition: service_started
+    environment:
+      - SPRING_CONFIG_IMPORT=optional:configserver:${CONFIG_SERVER_URL}
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:${MYSQL_PORT}/user_db?createDatabaseIfNotExist=true
+      - SPRING_DATASOURCE_USERNAME=${DB_USERNAME}
+      - SPRING_DATASOURCE_PASSWORD=${DB_PASSWORD}
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=${EUREKA_SERVER}
+      - JWT_SECRET=${JWT_SECRET}
+      - JWT_EXPIRATION=${JWT_EXPIRATION}
+    networks:
+      - micro-net
+
+  startup-service:
+    build: ./founderlink-startup-service
+    env_file:
+      - .env
+    depends_on:
+      discovery-server:
+          condition: service_started
+      config-server:
+          condition: service_started
+      mysql:
+          condition: service_healthy
+      rabbitmq:
+          condition: service_started
+    environment:
+      - SPRING_CONFIG_IMPORT=optional:configserver:${CONFIG_SERVER_URL}
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:${MYSQL_PORT}/startup_db?createDatabaseIfNotExist=true
+      - SPRING_DATASOURCE_USERNAME=${DB_USERNAME}
+      - SPRING_DATASOURCE_PASSWORD=${DB_PASSWORD}
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=${EUREKA_SERVER}
+      - JWT_SECRET=${JWT_SECRET}
+      - JWT_EXPIRATION=${JWT_EXPIRATION}
+    networks:
+      - micro-net
+
+  team-service:
+    build: ./founderlink-team-service
+    env_file:
+      - .env
+    depends_on:
+      discovery-server:
+          condition: service_started
+      config-server:
+          condition: service_started
+      mysql:
+          condition: service_healthy
+      rabbitmq:
+          condition: service_started
+    environment:
+      - SPRING_CONFIG_IMPORT=optional:configserver:${CONFIG_SERVER_URL}
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:${MYSQL_PORT}/team_db?createDatabaseIfNotExist=true
+      - SPRING_DATASOURCE_USERNAME=${DB_USERNAME}
+      - SPRING_DATASOURCE_PASSWORD=${DB_PASSWORD}
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=${EUREKA_SERVER}
+      - JWT_SECRET=${JWT_SECRET}
+      - JWT_EXPIRATION=${JWT_EXPIRATION}
+    networks:
+      - micro-net
+
+  investment-service:
+    build: ./founderlink-investment-service
+    env_file:
+      - .env
+    depends_on:
+      discovery-server:
+          condition: service_started
+      config-server:
+          condition: service_started
+      mysql:
+          condition: service_healthy
+      rabbitmq:
+          condition: service_started
+    environment:
+      - SPRING_CONFIG_IMPORT=optional:configserver:${CONFIG_SERVER_URL}
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:${MYSQL_PORT}/investment_db?createDatabaseIfNotExist=true
+      - SPRING_DATASOURCE_USERNAME=${DB_USERNAME}
+      - SPRING_DATASOURCE_PASSWORD=${DB_PASSWORD}
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=${EUREKA_SERVER}
+      - JWT_SECRET=${JWT_SECRET}
+      - JWT_EXPIRATION=${JWT_EXPIRATION}
+    networks:
+      - micro-net
+
+  notification-service:
+    build: ./founderlink-notification-service
+    env_file:
+      - .env
+    depends_on:
+      discovery-server:
+          condition: service_started
+      config-server:
+          condition: service_started
+      mysql:
+          condition: service_healthy
+      rabbitmq:
+          condition: service_started
+    environment:
+      - SPRING_CONFIG_IMPORT=optional:configserver:${CONFIG_SERVER_URL}
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:${MYSQL_PORT}/notification_db?createDatabaseIfNotExist=true
+      - SPRING_DATASOURCE_USERNAME=${DB_USERNAME}
+      - SPRING_DATASOURCE_PASSWORD=${DB_PASSWORD}
+      - SPRING_RABBITMQ_HOST=rabbitmq
+      - SPRING_MAIL_USERNAME=${MAIL_USERNAME}
+      - SPRING_MAIL_PASSWORD=${MAIL_PASSWORD}
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=${EUREKA_SERVER}
+      - JWT_SECRET=${JWT_SECRET}
+      - JWT_EXPIRATION=${JWT_EXPIRATION}
+    networks:
+      - micro-net
+
+  mysql:
+    image: mysql:8
+    container_name: mysql-db
+    restart: always
+    ports:
+      - "3307:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      retries: 5
+    networks:
+      - micro-net
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    networks:
+      - micro-net
+
+  zipkin:
+    image: openzipkin/zipkin
+    ports:
+      - "9411:9411"
+    networks:
+      - micro-net
+
+networks:
+  micro-net:
+    driver: bridge

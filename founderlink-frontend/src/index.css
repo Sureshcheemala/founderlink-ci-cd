@@ -1,0 +1,69 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-slate-50 text-slate-900 font-sans antialiased transition-colors duration-300;
+  }
+  .dark body {
+    @apply bg-[#0B0F0E] text-slate-200 selection:bg-emerald-500/30 selection:text-emerald-200;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-slate-800 text-white px-5 py-2.5 rounded-md font-semibold hover:bg-slate-900 transition-all shadow-sm active:scale-[0.98];
+  }
+  .dark .btn-primary {
+    @apply bg-emerald-500 text-[#0B0F0E] hover:bg-emerald-400 shadow-[0_0_20px_-5px_rgba(16,185,129,0.3)] hover:shadow-[0_0_30px_-5px_rgba(16,185,129,0.5)];
+  }
+  .btn-secondary {
+    @apply bg-white text-slate-700 border border-slate-300 px-5 py-2.5 rounded-md font-semibold hover:bg-slate-50 transition-all active:scale-[0.98] shadow-sm;
+  }
+  .dark .btn-secondary {
+    @apply bg-transparent text-emerald-50 border-emerald-500/30 hover:bg-emerald-500/10 hover:border-emerald-500/50;
+  }
+  .card {
+    @apply bg-white border border-slate-200 rounded-lg shadow-sm p-8 transition-all hover:shadow-md;
+  }
+  .dark .card {
+    @apply bg-[#0f1513]/80 backdrop-blur-md border-white/5 rounded-2xl hover:border-emerald-500/30 hover:shadow-[0_0_20px_-5px_rgba(16,185,129,0.2)];
+  }
+  .glass-card {
+    @apply bg-gradient-to-b from-white/[0.04] to-white/[0.01] backdrop-blur-xl border border-white/10 rounded-2xl shadow-[0_8px_32px_0_rgba(0,0,0,0.3)];
+  }
+  .input {
+    @apply bg-white border border-slate-300 p-2.5 w-full rounded-md text-slate-900 focus:ring-2 focus:ring-slate-400/30 focus:border-slate-500 outline-none transition-all placeholder-slate-400;
+  }
+  .dark .input {
+    @apply bg-[#0f1513] border-white/10 text-white focus:ring-emerald-500/30 focus:border-emerald-500/50 placeholder-slate-500;
+  }
+  .badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-700;
+  }
+  .dark .badge {
+    @apply px-3 py-1 font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20;
+  }
+  .section-heading {
+    @apply text-3xl font-bold tracking-tight text-slate-900;
+  }
+  .dark .section-heading {
+    @apply md:text-5xl font-black text-white;
+  }
+  .sub-heading {
+    @apply text-lg text-slate-600;
+  }
+  .dark .sub-heading {
+    @apply text-slate-400 font-medium leading-relaxed;
+  }
+  .text-gradient {
+    @apply bg-clip-text text-transparent;
+  }
+  .dark .text-gradient {
+    @apply bg-gradient-to-r from-emerald-500 to-emerald-400;
+  }
+}
+
