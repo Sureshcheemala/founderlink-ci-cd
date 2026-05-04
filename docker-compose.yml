@@ -56,7 +56,7 @@ services:
 
   auth-service:
     # build: ./founderlink-auth-service
-    image: sureshcheemala/founderlink-auth-gateway:latest
+    image: sureshcheemala/founderlink-auth-service:latest
     env_file:
       - .env
     depends_on:
