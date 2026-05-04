@@ -42,15 +42,15 @@ jobs:
     - name: Build & Push Images
       run: |
         SERVICES=(
-          "config-server"
-          "service-registry"
-          "auth-service"
-          "user-service"
-          "team-service"
-          "startup-service"
-          "investment-service"
-          "notification-service"
-          "api-gateway"
+         "founderlink-config-server"
+         "founderlink-service-registry"
+         "founderlink-auth-service"
+         "founderlink-user-service"
+         "founderlink-team-service"
+         "founderlink-startup-service"
+         "founderlink-investment-service"
+         "founderlink-notification-service"
+         "founderlink-api-gateway"
         )
 
         for SERVICE in "${SERVICES[@]}"; do
