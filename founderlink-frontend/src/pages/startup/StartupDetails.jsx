@@ -130,7 +130,11 @@ const StartupDetails = () => {
               <button onClick={handleJoinRequest} className="btn-primary flex-1 md:flex-none py-3 px-6">Request to Join</button>
             )}
             {isOwner && (
-              <button onClick={() => navigate(`/founder/edit/${startup.id}`)} className="btn-secondary flex-1 md:flex-none py-3 px-6">Manage Profile</button>
+              <>
+                <button onClick={() => navigate(`/founder/startup/${startup.id}/request`)} className="btn-primary flex-1 md:flex-none py-3 px-6">Request Funding</button>
+                <button onClick={() => navigate(`/founder/startup/${startup.id}/investments`)} className="btn-secondary flex-1 md:flex-none py-3 px-6">View Investments</button>
+                <button onClick={() => navigate(`/founder/edit/${startup.id}`)} className="btn-secondary flex-1 md:flex-none py-3 px-6">Manage Profile</button>
+              </>
             )}
           </div>
         </div>

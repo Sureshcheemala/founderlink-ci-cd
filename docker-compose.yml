@@ -206,6 +206,12 @@ services:
     networks:
       - micro-net
 
+  frontend:
+    image: yourdockerhub/frontend:latest
+    ports:
+      - "80:80"
+    restart: unless-stopped
+
   mysql:
     image: mysql:8
     container_name: mysql-db
