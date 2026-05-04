@@ -1,6 +1,6 @@
 services:
   sonarqube:
-    image: sonarqube:community
+    image: sonarqube:community:latest
     container_name: sonarqube
     ports:
       - "9000:9000"
@@ -11,7 +11,7 @@ services:
 
   config-server:
     # build: ./founderlink-config-server
-    image: founderlink-config-server:latest
+    image: yourdockerhub/config-server:latest
     env_file:
       - .env
     ports:
@@ -21,7 +21,7 @@ services:
 
   discovery-server:
     # build: ./founderlink-service-registry
-    image: founderlink-service-registry:latest
+    image: yourdockerhub/service-registry:latest
     env_file:
       - .env
     ports:
@@ -56,7 +56,7 @@ services:
 
   auth-service:
     # build: ./founderlink-auth-service
-    image: founderlink-auth-service:latest
+    image: yourdockerhub/api-gateway:latest
     env_file:
       - .env
     depends_on:
@@ -82,7 +82,7 @@ services:
 
   user-service:
     # build: ./founderlink-user-service
-    image: founderlink-user-service:latest
+    image: yourdockerhub/user-service:latest
     env_file:
       - .env
     depends_on:
@@ -107,7 +107,7 @@ services:
 
   startup-service:
     # build: ./founderlink-startup-service
-    image: founderlink-startup-service:latest
+    image: yourdockerhub/startup-service:latest
     env_file:
       - .env
     depends_on:
@@ -132,7 +132,7 @@ services:
 
   team-service:
     # build: ./founderlink-team-service
-    image: founderlink-team-service:latest
+    image: yourdockerhub/team-service:latest
     env_file:
       - .env
     depends_on:
@@ -157,7 +157,7 @@ services:
 
   investment-service:
     # build: ./founderlink-investment-service
-    image: founderlink-investment-service:latest
+    image: yourdockerhub/investment-service:latest
     env_file:
       - .env
     depends_on:
@@ -182,7 +182,7 @@ services:
 
   notification-service:
     # build: ./founderlink-notification-service
-    image: founderlink-notification-service:latest
+    image: yourdockerhub/notification-service:latest
     env_file:
       - .env
     depends_on:
