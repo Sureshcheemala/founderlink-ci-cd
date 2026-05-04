@@ -1,6 +1,6 @@
 services:
   sonarqube:
-    image: sonarqube:community:latest
+    image: sonarqube:community
     container_name: sonarqube
     ports:
       - "9000:9000"
@@ -11,7 +11,7 @@ services:
 
   config-server:
     # build: ./founderlink-config-server
-    image: yourdockerhub/config-server:latest
+    image: sureshcheemala/config-server:latest
     env_file:
       - .env
     ports:
@@ -21,7 +21,7 @@ services:
 
   discovery-server:
     # build: ./founderlink-service-registry
-    image: yourdockerhub/service-registry:latest
+    image: sureshcheemala/service-registry:latest
     env_file:
       - .env
     ports:
@@ -35,7 +35,7 @@ services:
 
   api-gateway:
     # build: ./founderlink-api-gateway
-    image: founderlink-api-gateway:latest
+    image: sureshcheemala/api-gateway:latest
     env_file:
       - .env
     ports:
@@ -56,7 +56,7 @@ services:
 
   auth-service:
     # build: ./founderlink-auth-service
-    image: yourdockerhub/api-gateway:latest
+    image: sureshcheemala/api-gateway:latest
     env_file:
       - .env
     depends_on:
@@ -82,7 +82,7 @@ services:
 
   user-service:
     # build: ./founderlink-user-service
-    image: yourdockerhub/user-service:latest
+    image: sureshcheemala/user-service:latest
     env_file:
       - .env
     depends_on:
@@ -107,7 +107,7 @@ services:
 
   startup-service:
     # build: ./founderlink-startup-service
-    image: yourdockerhub/startup-service:latest
+    image: sureshcheemala/startup-service:latest
     env_file:
       - .env
     depends_on:
@@ -132,7 +132,7 @@ services:
 
   team-service:
     # build: ./founderlink-team-service
-    image: yourdockerhub/team-service:latest
+    image: sureshcheemala/team-service:latest
     env_file:
       - .env
     depends_on:
@@ -157,7 +157,7 @@ services:
 
   investment-service:
     # build: ./founderlink-investment-service
-    image: yourdockerhub/investment-service:latest
+    image: sureshcheemala/investment-service:latest
     env_file:
       - .env
     depends_on:
@@ -182,7 +182,7 @@ services:
 
   notification-service:
     # build: ./founderlink-notification-service
-    image: yourdockerhub/notification-service:latest
+    image: sureshcheemala/notification-service:latest
     env_file:
       - .env
     depends_on:
@@ -209,7 +209,7 @@ services:
       - micro-net
 
   frontend:
-    image: yourdockerhub/frontend:latest:latest
+    image: sureshcheemala/frontend:latest:latest
     ports:
       - "80:80"
     restart: unless-stopped
@@ -231,7 +231,7 @@ services:
       - micro-net
 
   rabbitmq:
-    image: rabbitmq:3-management:latest
+    image: rabbitmq:3-management
     ports:
       - "5672:5672"
       - "15672:15672"
