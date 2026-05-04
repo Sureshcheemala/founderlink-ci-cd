@@ -10,7 +10,8 @@ services:
       - micro-net
 
   config-server:
-    build: ./founderlink-config-server
+    # build: ./founderlink-config-server
+    image: founderlink-config-server:latest
     env_file:
       - .env
     ports:
@@ -19,7 +20,8 @@ services:
       - micro-net
 
   discovery-server:
-    build: ./founderlink-service-registry
+    # build: ./founderlink-service-registry
+    image: founderlink-service-registry:latest
     env_file:
       - .env
     ports:
@@ -32,8 +34,8 @@ services:
       - micro-net
 
   api-gateway:
-    build: ./founderlink-api-gateway
-    image: founderlink-api-gateway
+    # build: ./founderlink-api-gateway
+    image: founderlink-api-gateway:latest
     env_file:
       - .env
     ports:
@@ -53,8 +55,8 @@ services:
       - micro-net
 
   auth-service:
-    build: ./founderlink-auth-service
-    image: founderlink-auth-service
+    # build: ./founderlink-auth-service
+    image: founderlink-auth-service:latest
     env_file:
       - .env
     depends_on:
@@ -79,8 +81,8 @@ services:
       - micro-net
 
   user-service:
-    build: ./founderlink-user-service
-    image: founderlink-user-service
+    # build: ./founderlink-user-service
+    image: founderlink-user-service:latest
     env_file:
       - .env
     depends_on:
@@ -104,8 +106,8 @@ services:
       - micro-net
 
   startup-service:
-    build: ./founderlink-startup-service
-    image: founderlink-startup-service
+    # build: ./founderlink-startup-service
+    image: founderlink-startup-service:latest
     env_file:
       - .env
     depends_on:
@@ -129,8 +131,8 @@ services:
       - micro-net
 
   team-service:
-    build: ./founderlink-team-service
-    image: founderlink-team-service
+    # build: ./founderlink-team-service
+    image: founderlink-team-service:latest
     env_file:
       - .env
     depends_on:
@@ -154,8 +156,8 @@ services:
       - micro-net
 
   investment-service:
-    build: ./founderlink-investment-service
-    image: founderlink-investment-service
+    # build: ./founderlink-investment-service
+    image: founderlink-investment-service:latest
     env_file:
       - .env
     depends_on:
@@ -179,8 +181,8 @@ services:
       - micro-net
 
   notification-service:
-    build: ./founderlink-notification-service
-    image: founderlink-notification-service
+    # build: ./founderlink-notification-service
+    image: founderlink-notification-service:latest
     env_file:
       - .env
     depends_on:
@@ -207,13 +209,13 @@ services:
       - micro-net
 
   frontend:
-    image: yourdockerhub/frontend:latest
+    image: yourdockerhub/frontend:latest:latest
     ports:
       - "80:80"
     restart: unless-stopped
 
   mysql:
-    image: mysql:8
+    image: mysql:8:latest
     container_name: mysql-db
     restart: always
     ports:
@@ -229,7 +231,7 @@ services:
       - micro-net
 
   rabbitmq:
-    image: rabbitmq:3-management
+    image: rabbitmq:3-management:latest
     ports:
       - "5672:5672"
       - "15672:15672"
