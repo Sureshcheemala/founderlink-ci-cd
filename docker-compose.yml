@@ -215,7 +215,7 @@ services:
     restart: unless-stopped
 
   mysql:
-    image: mysql:8:latest
+    image: mysql:8
     container_name: mysql-db
     restart: always
     ports:
