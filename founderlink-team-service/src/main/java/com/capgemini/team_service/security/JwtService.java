@@ -1,5 +1,6 @@
 package com.capgemini.team_service.security;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import io.jsonwebtoken.Claims;
@@ -13,10 +14,11 @@ import java.util.List;
 @Service
 public class JwtService {
 
-    private static final String SECRET = "ejfbniuNeJFkJDneaiKJKNol298y2938tjleknjrjebfuyiwefg";
+	@Value("${JWT_SECRET}")
+    private String secret;
 
     private Key getSigningKey() {
-        return Keys.hmacShaKeyFor(SECRET.getBytes(StandardCharsets.UTF_8));
+        return Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8));
     }
 
     // Parse once and reuse everywhere

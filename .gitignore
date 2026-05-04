@@ -9,8 +9,6 @@ target/
 # =====================
 # Spring Boot
 # =====================
-application.properties
-application.yml
 .env
 
 # =====================

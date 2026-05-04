@@ -3,6 +3,8 @@ package com.capgemini.investment_service.security;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
+
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.nio.charset.StandardCharsets;
@@ -12,10 +14,11 @@ import java.util.List;
 @Service
 public class JwtService {
 
-    private static final String SECRET = "ejfbniuNeJFkJDneaiKJKNol298y2938tjleknjrjebfuyiwefg";
+	@Value("${JWT_SECRET}")
+    private String secret;
 
     private Key getSigningKey() {
-        return Keys.hmacShaKeyFor(SECRET.getBytes(StandardCharsets.UTF_8));
+        return Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8));
     }
 
     // Parse once and reuse everywhere
@@ -53,9 +56,4 @@ public class JwtService {
             return false;
         }
     }
-    
-//    public Boolean extractIsActive(Claims claims) {
-//        Object active = claims.get("isActive");
-//        return active != null && Boolean.parseBoolean(active.toString());
-//    }
 }

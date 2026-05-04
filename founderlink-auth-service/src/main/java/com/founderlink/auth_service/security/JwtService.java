@@ -5,6 +5,8 @@ import com.founderlink.auth_service.entity.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
+
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.security.Key;
@@ -14,7 +16,8 @@ import java.util.List;
 @Service
 public class JwtService {
 
-    private static final String SECRET = "ejfbniuNeJFkJDneaiKJKNol298y2938tjleknjrjebfuyiwefg";
+	@Value("${JWT_SECRET}")
+    private String secret;
 
     private static final long ACCESS_EXPIRATION = 1000 * 60 * 60; // 1 hour
     private static final long REFRESH_EXPIRATION = 1000L * 60 * 60 * 24 * 7; // 7 days
@@ -101,7 +104,7 @@ public class JwtService {
 
     // Signing key
     private Key getSigningKey() {
-        return Keys.hmacShaKeyFor(SECRET.getBytes());
+        return Keys.hmacShaKeyFor(secret.getBytes());
     }
     
     public Boolean extractIsActive(Claims claims) {

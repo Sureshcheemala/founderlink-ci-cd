@@ -41,15 +41,15 @@ public class AuthController {
 		return ResponseEntity.ok("User blocked successfully");
 	}
 
-	@GetMapping("/test-founder")
-	@PreAuthorize("hasRole('FOUNDER')")
-	public String testFounder() {
-		return "Access granted to FOUNDER";
-	}
-
-	@GetMapping("/test-investor")
-	@PreAuthorize("hasRole('INVESTOR')")
-	public String testInvestor() {
-		return "Access granted to INVESTOR";
-	}
+//	@GetMapping("/test-founder")
+//	@PreAuthorize("hasRole('FOUNDER')")
+//	public String testFounder() {
+//		return "Access granted to FOUNDER";
+//	}
+//
+//	@GetMapping("/test-investor")
+//	@PreAuthorize("hasRole('INVESTOR')")
+//	public String testInvestor() {
+//		return "Access granted to INVESTOR";
+//	}
 }
