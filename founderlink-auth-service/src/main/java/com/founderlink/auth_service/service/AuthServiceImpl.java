@@ -42,8 +42,31 @@ public class AuthServiceImpl implements AuthService {
 		});
 		
 		//Getting role details and checking if it exists
-		Role role = roleRepository.findByName(registerRequest.getRole())
-				.orElseThrow(() -> new ResourceNotFoundException("Role does not exist"));
+//		Role role = roleRepository.findByName(registerRequest.getRole())
+//				.orElseThrow(() -> new ResourceNotFoundException("Role does not exist"));
+		
+		Role role;
+
+		String requestedRole = registerRequest.getRole();
+
+		// Block ADMIN completely
+		if ("ROLE_ADMIN".equals(requestedRole)) {
+		    throw new UnauthorizedException("Admin registration not allowed");
+		}
+
+		// Allowed roles
+		if ("ROLE_FOUNDER".equals(requestedRole) ||
+		    "ROLE_COFOUNDER".equals(requestedRole) ||
+		    "ROLE_INVESTOR".equals(requestedRole)) {
+
+		    role = roleRepository.findByName(requestedRole)
+		            .orElseThrow(() -> new ResourceNotFoundException("Role not found"));
+
+		} else {
+		    // Default role fallback
+		    role = roleRepository.findByName("ROLE_INVESTOR")
+		            .orElseThrow(() -> new ResourceNotFoundException("Default role not found"));
+		}
 		
 		//Converting role into set
 		Set<Role> roles = Set.of(role);
