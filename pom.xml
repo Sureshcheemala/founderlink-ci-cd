@@ -1,19 +1,25 @@
-<project>
-  <modelVersion>4.0.0</modelVersion>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+         http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-  <groupId>com.founderlink</groupId>
-  <artifactId>founderlink-parent</artifactId>
-  <version>1.0</version>
-  <packaging>pom</packaging>
+    <modelVersion>4.0.0</modelVersion>
 
-  <modules>
-    <module>founderlink-config-server</module>
-    <module>founderlink-service-registry</module>
-    <module>founderlink-auth-service</module>
-    <module>founderlink-user-service</module>
-    <module>founderlink-team-service</module>
-    <module>founderlink-startup-service</module>
-    <module>founderlink-investment-service</module>
-    <module>founderlink-notification-service</module>
-    <module>founderlink-api-gateway</module>
-  </modules>
+    <groupId>com.founderlink</groupId>
+    <artifactId>founderlink-parent</artifactId>
+    <version>1.0.0</version>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>founderlink-config-server</module>
+        <module>founderlink-service-registry</module>
+        <module>founderlink-auth-service</module>
+        <module>founderlink-user-service</module>
+        <module>founderlink-team-service</module>
+        <module>founderlink-startup-service</module>
+        <module>founderlink-investment-service</module>
+        <module>founderlink-notification-service</module>
+        <module>founderlink-api-gateway</module>
+    </modules>
+
+</project>
