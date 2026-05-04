@@ -3,7 +3,7 @@ name: Frontend CI/CD
 on:
   push:
     paths:
-      - "frontend/**"
+      - "founderlink-frontend/**"
 
 env:
   DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
@@ -27,14 +27,14 @@ jobs:
 
     - name: Build & Push Frontend
       run: |
-        docker build -t $DOCKER_USERNAME/frontend:latest ./frontend
-        docker build -t $DOCKER_USERNAME/frontend:$IMAGE_TAG ./frontend
+        docker build -t $DOCKER_USERNAME/frontend:latest ./founderlink-frontend
+        docker build -t $DOCKER_USERNAME/frontend:$IMAGE_TAG ./founderlink-frontend
 
         docker push $DOCKER_USERNAME/frontend:latest
         docker push $DOCKER_USERNAME/frontend:$IMAGE_TAG
 
 
-  # CD
+  # 🚀 CD
   deploy:
     needs: build-and-push
     runs-on: ubuntu-latest
@@ -47,6 +47,6 @@ jobs:
         username: ${{ secrets.VM_USER }}
         key: ${{ secrets.VM_SSH_KEY }}
         script: |
-          cd ~/founderlink
-          docker-compose pull frontend
-          docker-compose up -d frontend
+          cd ~/founderlink-ci-cd
+          docker compose pull frontend
+          docker compose up -d frontend
