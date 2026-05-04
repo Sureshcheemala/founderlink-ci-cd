@@ -209,7 +209,7 @@ services:
       - micro-net
 
   frontend:
-    image: sureshcheemala/frontend:latest:latest
+    image: sureshcheemala/frontend:latest
     ports:
       - "80:80"
     restart: unless-stopped
