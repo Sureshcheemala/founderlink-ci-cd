@@ -19,7 +19,7 @@ public class UserProfileController {
 
 	private final UserService userService;
 
-	@PreAuthorize("hasAnyRole('FOUNDER','INVESTOR','COFOUNDER')")
+	@PreAuthorize("hasAnyRole('FOUNDER','INVESTOR','COFOUNDER', 'ADMIN')")
 	@PostMapping("/profile")
 	public UserProfile createOrUpdateProfile(
 	        Authentication authentication,
@@ -29,7 +29,7 @@ public class UserProfileController {
 	    return userService.createOrUpdateProfile(email, request);
 	}
 
-	@PreAuthorize("hasAnyRole('FOUNDER','INVESTOR','COFOUNDER')")
+	@PreAuthorize("hasAnyRole('FOUNDER','INVESTOR','COFOUNDER', 'ADMIN')")
 	@GetMapping("/profile")
 	public UserProfile getProfile(Authentication authentication) {
 
