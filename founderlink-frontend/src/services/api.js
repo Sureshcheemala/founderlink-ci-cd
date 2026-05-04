@@ -7,6 +7,8 @@ const API = axios.create({
   },
 });
 
+console.log(import.meta.env.VITE_API_URL);
+
 // 🔐 REQUEST INTERCEPTOR (attach token)
 API.interceptors.request.use(
   (config) => {

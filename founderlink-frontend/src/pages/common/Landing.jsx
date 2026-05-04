@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import { FiArrowRight, FiUsers, FiSearch, FiShield, FiBriefcase, FiTarget, FiZap, FiBarChart2, FiGlobe, FiClock, FiFileText, FiTrendingUp } from "react-icons/fi";
 
 const Landing = () => {
+
+  console.log(import.meta.env?.VITE_API_URL)
   return (
     <div className="bg-white dark:bg-[#0B0F0E] min-h-screen font-sans selection:bg-blue-100 dark:selection:bg-emerald-500/30 selection:text-blue-900 dark:selection:text-emerald-200 transition-colors duration-300">
       
