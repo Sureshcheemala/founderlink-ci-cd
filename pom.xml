@@ -1,0 +1,19 @@
+<project>
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.founderlink</groupId>
+  <artifactId>founderlink-parent</artifactId>
+  <version>1.0</version>
+  <packaging>pom</packaging>
+
+  <modules>
+    <module>founderlink-config-server</module>
+    <module>founderlink-service-registry</module>
+    <module>founderlink-auth-service</module>
+    <module>founderlink-user-service</module>
+    <module>founderlink-team-service</module>
+    <module>founderlink-startup-service</module>
+    <module>founderlink-investment-service</module>
+    <module>founderlink-notification-service</module>
+    <module>founderlink-api-gateway</module>
+  </modules>
