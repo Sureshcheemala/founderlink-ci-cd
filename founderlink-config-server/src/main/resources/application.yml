@@ -9,6 +9,6 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/Sureshcheemala/docker-founderlink-config-repo
+          uri: https://github.com/Sureshcheemala/ci-cd-founderlink-config
           clone-on-start: true
           
